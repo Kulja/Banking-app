@@ -20,7 +20,7 @@ public class Glavna {
 		String oib;
 		BigDecimal stanje;
 		
-		
+		// kreiranje prve osobe
 		System.out.print("Unesite ime prve osobe: ");
 		ime = unos.next();
 		System.out.print("Unesite prezime prve osobe: ");
@@ -33,7 +33,7 @@ public class Glavna {
 		Osoba prvaOsoba = new Osoba(ime, prezime, oib);
 		Racun racunPrveOsobe = new Racun(prvaOsoba, stanje);
 		
-		
+		// kreiranje druge osobe
 		System.out.print("Unesite ime druge osobe: ");
 		ime = unos.next();
 		System.out.print("Unesite prezime druge osobe: ");
