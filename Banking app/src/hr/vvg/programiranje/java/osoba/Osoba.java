@@ -6,6 +6,7 @@ public class Osoba {
 	private String prezime;
 	private String oib;
 	
+	// konstruktor
 	public Osoba (String ime, String prezime, String oib) {
 		this.ime = ime;
 		this.prezime = prezime;
