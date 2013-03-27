@@ -4,7 +4,7 @@ import hr.vvg.programiranje.java.osoba.Osoba;
 
 import java.math.BigDecimal;
 
-public class Racun {
+public abstract class Racun {
 	
 	private Osoba vlasnikRacuna;
 	private BigDecimal stanje;

@@ -4,9 +4,14 @@ import java.math.BigDecimal;
 
 public class Transakcija {
 	
-	private Racun polazni;
-	private Racun odlazni;
-	private BigDecimal iznos;
+	// varijabli sa modifikatorom protected 
+	// je moguæe pristupati samo: 
+	// iz klase u kojoj se nalazi, 
+	// iz klasa koje se nalaze u istom paketu 
+	// i klasa koje nasljeðuju klasu s tom varijablom
+	protected Racun polazni;
+	protected Racun odlazni;
+	protected BigDecimal iznos;
 	
 	// konstruktor
 	public Transakcija (Racun polazni, Racun odlazni, BigDecimal iznos) {
