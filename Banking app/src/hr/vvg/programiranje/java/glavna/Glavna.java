@@ -4,38 +4,51 @@ import hr.vvg.programiranje.java.banka.DeviznaTransakcija;
 import hr.vvg.programiranje.java.banka.DevizniRacun;
 import hr.vvg.programiranje.java.banka.TekuciRacun;
 import hr.vvg.programiranje.java.banka.Transakcija;
+import hr.vvg.programiranje.java.iznimke.NedozvoljenoStanjeRacunaException;
+import hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException;
 import hr.vvg.programiranje.java.osoba.Osoba;
 
 import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Glavna {
 
-	/**
-	 * @param args
-	 */
+	private static final Logger logger = LoggerFactory.getLogger(Glavna.class);
+	
+	private static Scanner unos = new Scanner(System.in);
+
 	public static void main(String[] args) {
 		
-		Scanner unos = new Scanner(System.in);
 		String ime;
 		String prezime;
 		String oib;
 		String brojRacuna;
 		String iban;
 		String valuta;
-		BigDecimal stanje;
+		BigDecimal stanje = null;
 		
 		// prikupljanje podataka o prvoj osobi i stanju njezinog racuna
+		// i logiranje unesenih podataka
 		System.out.print("Unesite ime prve osobe: ");
 		ime = unos.next();
+		logger.info("Uneseno ime vlasnika prvog raèuna: " + ime);
 		System.out.print("Unesite prezime prve osobe: ");
 		prezime = unos.next();
+		logger.info("Uneseno prezime vlasnika prvog raèuna: " + prezime);
 		System.out.print("Unesite oib prve osobe: ");
 		oib = unos.next();
+		logger.info("Unesen oib vlasnika prvog raèuna: " + oib);
 		System.out.print("Unesite broj racuna prve osobe: ");
 		brojRacuna = unos.next();
-		System.out.print("Unesite stanje racuna prve osobe (KN): ");
-		stanje = unos.nextBigDecimal();
+		logger.info("Unesen broj racuna prvog raèuna: " + brojRacuna);
+		
+		// pozivanje metode unesiValjaniIznos koja od korisnika trazi da 
+		// unosi stanja racuna dok ne unese valjani iznos
+		stanje = unesiValjaniIznos("Unesite stanje racuna prve osobe: ", "Unesen neispravan iznos za stanje prvog raèuna!");
 		
 		// kreiranje prve osobe
 		Osoba prvaOsoba = new Osoba(ime, prezime, oib);
@@ -43,18 +56,27 @@ public class Glavna {
 		TekuciRacun racunPrveOsobe = new TekuciRacun(prvaOsoba, stanje, brojRacuna);
 		
 		// prikupljanje podataka o drugoj osobi i stanju njezinog racuna
+		// i logiranje unesenih podataka
 		System.out.print("Unesite ime druge osobe: ");
 		ime = unos.next();
+		logger.info("Uneseno ime vlasnika drugog raèuna: " + ime);
 		System.out.print("Unesite prezime druge osobe: ");
 		prezime = unos.next();
+		logger.info("Uneseno prezime vlasnika drugog raèuna: " + prezime);
 		System.out.print("Unesite oib druge osobe: ");
 		oib = unos.next();
+		logger.info("Unesen oib vlasnika drugog raèuna: " + oib);
 		System.out.print("Unesite IBAN racuna druge osobe: ");
 		iban = unos.next();
-		System.out.print("Unesite valutu racuna druge osobe: ");
-		valuta = unos.next();
-		System.out.print("Unesite stanje racuna druge osobe: ");
-		stanje = unos.nextBigDecimal();
+		logger.info("Unesen IBAN drugog raèuna: " + iban);
+		
+		// pozivanje metode unesiValjanuValutu koja od korisnika trazi da 
+		// unosi valute dok ne unese podrzanu valutu
+		valuta = unesiValjanuValutu();
+
+		// pozivanje metode unesiValjaniIznos koja od korisnika trazi da 
+		// unosi stanja racuna dok ne unese valjani iznos
+		stanje = unesiValjaniIznos("Unesite stanje racuna druge osobe: ", "Unesen neispravan iznos za stanje drugog raèuna!");
 		
 		// kreiranje druge osobe
 		Osoba drugaOsoba = new Osoba(ime, prezime, oib);
@@ -69,12 +91,61 @@ public class Glavna {
 		Transakcija transakcija = new DeviznaTransakcija(racunPrveOsobe, racunDrugeOsobe, iznos);
 		
 		// provodenje same transakcije 
-		transakcija.provediTransakciju();
+		// ukoliko dodje do iznimke transakcija se ne provodi
+		try {
+			transakcija.provediTransakciju();
+			String message = "Transakcija uspjesno provedena!";
+			System.out.println(message);
+			logger.info(message);
+		} catch (NedozvoljenoStanjeRacunaException ex) {
+			System.out.println(ex.getMessage());
+			logger.error(ex.getMessage(), ex);
+		}
 		
 		System.out.println("Stanje prvog racuna: " + racunPrveOsobe.getStanje() + "KN");
 		System.out.println("Stanje drugog racuna " + racunDrugeOsobe.getStanje() + racunDrugeOsobe.getValuta());
 		
 		unos.close();
 	}
-
+	
+	// metoda koja provjerava je li korisnik upisao dobar broj
+	public static BigDecimal unesiValjaniIznos(String pitanje, String odgovorZaKriviUnos) {
+		BigDecimal broj = null;
+		boolean neispravanUnos = true;
+		
+		do {
+			System.out.print(pitanje);
+			try {
+				broj = unos.nextBigDecimal();
+				neispravanUnos = false;
+			} catch (InputMismatchException ex) {
+				System.out.println(odgovorZaKriviUnos);
+				logger.error(odgovorZaKriviUnos, ex);
+				unos.nextLine();
+			}
+		} while (neispravanUnos == true);
+		
+		return broj;
+	}
+	
+	// metoda koja provjerava je li unesena valuta podržana
+	public static String unesiValjanuValutu() {
+		String valuta;
+		boolean neispravanUnos = true;
+		
+		do {
+			System.out.print("Unesite valutu racuna druge osobe: ");
+			valuta = unos.next();
+			try {
+				DeviznaTransakcija.provjeriValutu(valuta);
+				neispravanUnos = false;
+			} catch (NepodrzanaValutaException ex) {
+				System.out.println(ex.getMessage());
+				logger.error(ex.getMessage(), ex);
+				unos.nextLine();
+			}
+		} while (neispravanUnos == true);
+		
+		return valuta;
+	}
 }
