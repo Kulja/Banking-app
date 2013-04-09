@@ -31,6 +31,8 @@ public class Glavna {
 		String valuta;
 		BigDecimal stanje = null;
 		
+		logger.info("Aplikacija pokrenuta!");
+		
 		// prikupljanje podataka o prvoj osobi i stanju njezinog racuna
 		// i logiranje unesenih podataka
 		System.out.print("Unesite ime prve osobe: ");
@@ -48,7 +50,7 @@ public class Glavna {
 		
 		// pozivanje metode unesiValjaniIznos koja od korisnika trazi da 
 		// unosi stanja racuna dok ne unese valjani iznos
-		stanje = unesiValjaniIznos("Unesite stanje racuna prve osobe: ", "Unesen neispravan iznos za stanje prvog raèuna!");
+		stanje = unesiValjaniIznos("Unesite stanje racuna prve osobe: ", "Unesen neispravan iznos za stanje prvog raèuna!", "Uneseno stanje racuna prve osobe: ");
 		
 		// kreiranje prve osobe
 		Osoba prvaOsoba = new Osoba(ime, prezime, oib);
@@ -76,7 +78,7 @@ public class Glavna {
 
 		// pozivanje metode unesiValjaniIznos koja od korisnika trazi da 
 		// unosi stanja racuna dok ne unese valjani iznos
-		stanje = unesiValjaniIznos("Unesite stanje racuna druge osobe: ", "Unesen neispravan iznos za stanje drugog raèuna!");
+		stanje = unesiValjaniIznos("Unesite stanje racuna druge osobe: ", "Unesen neispravan iznos za stanje drugog raèuna!", "Uneseno stanje racuna druge osobe: ");
 		
 		// kreiranje druge osobe
 		Osoba drugaOsoba = new Osoba(ime, prezime, oib);
@@ -86,6 +88,7 @@ public class Glavna {
 		// dohvacanje iznosa kojeg zelimo prebaciti s jednog racuna na drugi
 		System.out.print("Unesite iznos (KN) koji zelite prebaciti s prvog racuna na drugi: ");
 		BigDecimal iznos = unos.nextBigDecimal();
+		logger.info("Unesen iznos (KN) koji zelimo prebaciti s prvog racuna na drugi: " + iznos);
 		
 		// kreiranje transakcije
 		Transakcija transakcija = new DeviznaTransakcija(racunPrveOsobe, racunDrugeOsobe, iznos);
@@ -109,7 +112,7 @@ public class Glavna {
 	}
 	
 	// metoda koja provjerava je li korisnik upisao dobar broj
-	public static BigDecimal unesiValjaniIznos(String pitanje, String odgovorZaKriviUnos) {
+	public static BigDecimal unesiValjaniIznos(String pitanje, String odgovorZaKriviUnos, String odgovorZaDobarUnos) {
 		BigDecimal broj = null;
 		boolean neispravanUnos = true;
 		
@@ -118,6 +121,7 @@ public class Glavna {
 			try {
 				broj = unos.nextBigDecimal();
 				neispravanUnos = false;
+				logger.info(odgovorZaDobarUnos + broj);
 			} catch (InputMismatchException ex) {
 				System.out.println(odgovorZaKriviUnos);
 				logger.error(odgovorZaKriviUnos, ex);
@@ -139,6 +143,7 @@ public class Glavna {
 			try {
 				DeviznaTransakcija.provjeriValutu(valuta);
 				neispravanUnos = false;
+				logger.info("Unesena valuta racuna druge osobe: " + valuta);
 			} catch (NepodrzanaValutaException ex) {
 				System.out.println(ex.getMessage());
 				logger.error(ex.getMessage(), ex);
