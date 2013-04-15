@@ -1,16 +1,30 @@
 package hr.vvg.programiranje.java.iznimke;
 
+/**
+ * Predstavlja iznimku nedozvoljenog stanja na racunu.
+ * 
+ * @author Kulja
+ *
+ */
 public class NedozvoljenoStanjeRacunaException extends RuntimeException {
 	
-	// samo da maknemo warning
 	private static final long serialVersionUID = 3479129953564570575L;
 
-	// konstruktor koji prima jedan parametar
+	/**
+	 * Poziva konstrukor nadklase.
+	 * 
+	 * @param message podatak o poruci koja objasnjava razlog iznimke
+	 */
 	public NedozvoljenoStanjeRacunaException (String message) {
 		super(message);
 	}
 	
-	// konstruktor koji prima dva parametra
+	/**
+	 * Poziva konstrukor nadklase.
+	 * 
+	 * @param message podatak o poruci koja objasnjava razlog iznimke
+	 * @param cause podatak o samoj iznimci
+	 */
 	public NedozvoljenoStanjeRacunaException (String message, Throwable cause) {
 		super(message, cause);
 	}
