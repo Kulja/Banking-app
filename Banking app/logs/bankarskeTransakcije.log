@@ -1,0 +1,401 @@
+2013-04-23 17:32:52,626 INFO [main] h.v.p.j.g.Glavna [Glavna.java:32] Aplikacija pokrenuta! 
+2013-04-23 17:33:44,998 INFO [main] h.v.p.j.g.Glavna [Glavna.java:32] Aplikacija pokrenuta! 
+2013-04-23 17:33:51,735 INFO [main] h.v.p.j.g.Glavna [Glavna.java:167] Uneseno ime vlasnika 1. raèuna: fdf 
+2013-04-23 17:33:52,135 INFO [main] h.v.p.j.g.Glavna [Glavna.java:170] Uneseno prezime vlasnika 1. raèuna: dfdsf 
+2013-04-23 17:33:52,487 INFO [main] h.v.p.j.g.Glavna [Glavna.java:173] Unesen oib vlasnika 1. raèuna: sdfsd 
+2013-04-23 17:33:53,255 INFO [main] h.v.p.j.g.Glavna [Glavna.java:176] Unesen IBAN 1. raèuna: fsdf 
+2013-04-23 17:33:53,889 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta fds nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta fds nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.fds
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:33:59,617 INFO [main] h.v.p.j.g.Glavna [Glavna.java:237] Unesena valuta racuna druge osobe: EUR 
+2013-04-23 17:34:01,426 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:214] Unesen neispravan iznos za stanje drugog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:209) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:184) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+2013-04-23 17:34:02,355 INFO [main] h.v.p.j.g.Glavna [Glavna.java:211] Uneseno stanje racuna druge osobe: 3123 
+2013-04-23 17:34:54,192 INFO [main] h.v.p.j.g.Glavna [Glavna.java:32] Aplikacija pokrenuta! 
+2013-04-23 17:34:57,195 INFO [main] h.v.p.j.g.Glavna [Glavna.java:167] Uneseno ime vlasnika 1. raèuna: fdf 
+2013-04-23 17:34:57,531 INFO [main] h.v.p.j.g.Glavna [Glavna.java:170] Uneseno prezime vlasnika 1. raèuna: sdfs 
+2013-04-23 17:34:57,851 INFO [main] h.v.p.j.g.Glavna [Glavna.java:173] Unesen oib vlasnika 1. raèuna: fsd 
+2013-04-23 17:34:58,187 INFO [main] h.v.p.j.g.Glavna [Glavna.java:176] Unesen IBAN 1. raèuna: fsdfsd 
+2013-04-23 17:34:58,524 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta fsf nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta fsf nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.fsf
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:34:59,075 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta sdf nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta sdf nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.sdf
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:35:00,395 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta >EUR nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta >EUR nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.>EUR
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:35:01,907 INFO [main] h.v.p.j.g.Glavna [Glavna.java:237] Unesena valuta racuna druge osobe: EUR 
+2013-04-23 17:35:02,812 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:214] Unesen neispravan iznos za stanje drugog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:209) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:184) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+2013-04-23 17:35:03,389 INFO [main] h.v.p.j.g.Glavna [Glavna.java:211] Uneseno stanje racuna druge osobe: 23 
+2013-04-23 17:35:06,675 INFO [main] h.v.p.j.g.Glavna [Glavna.java:167] Uneseno ime vlasnika 2. raèuna: gfg 
+2013-04-23 17:35:07,036 INFO [main] h.v.p.j.g.Glavna [Glavna.java:170] Uneseno prezime vlasnika 2. raèuna: fgdf 
+2013-04-23 17:35:07,461 INFO [main] h.v.p.j.g.Glavna [Glavna.java:173] Unesen oib vlasnika 2. raèuna: gdfgd 
+2013-04-23 17:35:08,325 INFO [main] h.v.p.j.g.Glavna [Glavna.java:176] Unesen IBAN 2. raèuna: fgdfg 
+2013-04-23 17:35:08,717 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta dfg nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta dfg nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.dfg
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:35:09,045 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta dfg nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta dfg nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.dfg
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:35:10,357 INFO [main] h.v.p.j.g.Glavna [Glavna.java:237] Unesena valuta racuna druge osobe: EUR 
+2013-04-23 17:35:11,325 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:214] Unesen neispravan iznos za stanje drugog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:209) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:184) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+2013-04-23 17:35:11,837 INFO [main] h.v.p.j.g.Glavna [Glavna.java:211] Uneseno stanje racuna druge osobe: 23 
+2013-04-23 17:35:49,524 INFO [main] h.v.p.j.g.Glavna [Glavna.java:32] Aplikacija pokrenuta! 
+2013-04-23 17:35:51,932 INFO [main] h.v.p.j.g.Glavna [Glavna.java:167] Uneseno ime vlasnika 1. raèuna: gfdsgf 
+2013-04-23 17:35:52,324 INFO [main] h.v.p.j.g.Glavna [Glavna.java:170] Uneseno prezime vlasnika 1. raèuna: dfgdf 
+2013-04-23 17:35:56,948 INFO [main] h.v.p.j.g.Glavna [Glavna.java:173] Unesen oib vlasnika 1. raèuna: gfds 
+2013-04-23 17:35:57,380 INFO [main] h.v.p.j.g.Glavna [Glavna.java:176] Unesen IBAN 1. raèuna: fds 
+2013-04-23 17:35:57,853 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta fsd nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta fsd nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.fsd
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:35:58,301 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta sdf nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta sdf nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.sdf
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:36:02,702 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta sdffd nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta sdffd nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.sdffd
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:36:04,318 INFO [main] h.v.p.j.g.Glavna [Glavna.java:237] Unesena valuta racuna druge osobe: EUR 
+2013-04-23 17:36:05,039 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:214] Unesen neispravan iznos za stanje drugog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:209) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:184) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+2013-04-23 17:36:05,560 INFO [main] h.v.p.j.g.Glavna [Glavna.java:211] Uneseno stanje racuna druge osobe: 23 
+2013-04-23 17:36:07,566 INFO [main] h.v.p.j.g.Glavna [Glavna.java:167] Uneseno ime vlasnika 2. raèuna: gf 
+2013-04-23 17:36:07,870 INFO [main] h.v.p.j.g.Glavna [Glavna.java:170] Uneseno prezime vlasnika 2. raèuna: dfgdf 
+2013-04-23 17:36:08,182 INFO [main] h.v.p.j.g.Glavna [Glavna.java:173] Unesen oib vlasnika 2. raèuna: gfdg 
+2013-04-23 17:36:08,478 INFO [main] h.v.p.j.g.Glavna [Glavna.java:176] Unesen IBAN 2. raèuna: dfg 
+2013-04-23 17:36:08,791 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta dfg nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta dfg nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.dfg
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:36:10,030 INFO [main] h.v.p.j.g.Glavna [Glavna.java:237] Unesena valuta racuna druge osobe: EUR 
+2013-04-23 17:36:11,127 INFO [main] h.v.p.j.g.Glavna [Glavna.java:211] Uneseno stanje racuna druge osobe: 23 
+2013-04-23 17:36:18,200 INFO [main] h.v.p.j.g.Glavna [Glavna.java:167] Uneseno ime vlasnika 1. raèuna: gfd 
+2013-04-23 17:36:18,480 INFO [main] h.v.p.j.g.Glavna [Glavna.java:170] Uneseno prezime vlasnika 1. raèuna: dfgdf 
+2013-04-23 17:36:18,736 INFO [main] h.v.p.j.g.Glavna [Glavna.java:173] Unesen oib vlasnika 1. raèuna: gdf 
+2013-04-23 17:36:18,960 INFO [main] h.v.p.j.g.Glavna [Glavna.java:176] Unesen IBAN 1. raèuna: gfdg 
+2013-04-23 17:36:19,225 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta fdgf nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta fdgf nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.fdgf
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:36:20,265 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:240] Valuta dg nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta dg nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:235) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:180) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.dg
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:36:20,969 INFO [main] h.v.p.j.g.Glavna [Glavna.java:237] Unesena valuta racuna druge osobe: EUR 
+2013-04-23 17:36:21,753 INFO [main] h.v.p.j.g.Glavna [Glavna.java:211] Uneseno stanje racuna druge osobe: 23 
+2013-04-23 17:36:24,921 INFO [main] h.v.p.j.g.Glavna [Glavna.java:133] Uneseno ime vlasnika 2. raèuna: fds 
+2013-04-23 17:36:25,201 INFO [main] h.v.p.j.g.Glavna [Glavna.java:136] Uneseno prezime vlasnika 2. raèuna: fsd 
+2013-04-23 17:36:25,513 INFO [main] h.v.p.j.g.Glavna [Glavna.java:139] Unesen oib vlasnika 2. raèuna: fsdf 
+2013-04-23 17:36:25,809 INFO [main] h.v.p.j.g.Glavna [Glavna.java:142] Unesen broj racuna 2. raèuna: sdfds 
+2013-04-23 17:36:26,122 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:214] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:209) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:146) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:36:28,354 INFO [main] h.v.p.j.g.Glavna [Glavna.java:211] Uneseno stanje racuna prve osobe: 23 
+2013-04-23 17:36:33,242 INFO [main] h.v.p.j.g.Glavna [Glavna.java:133] Uneseno ime vlasnika 1. raèuna: fdsf 
+2013-04-23 17:36:33,698 INFO [main] h.v.p.j.g.Glavna [Glavna.java:136] Uneseno prezime vlasnika 1. raèuna: sdfsdf 
+2013-04-23 17:36:34,114 INFO [main] h.v.p.j.g.Glavna [Glavna.java:139] Unesen oib vlasnika 1. raèuna: sdfs 
+2013-04-23 17:36:34,419 INFO [main] h.v.p.j.g.Glavna [Glavna.java:142] Unesen broj racuna 1. raèuna: fsdf 
+2013-04-23 17:36:34,707 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:214] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:209) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:146) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:36:36,572 INFO [main] h.v.p.j.g.Glavna [Glavna.java:211] Uneseno stanje racuna prve osobe: 100 
+2013-04-23 17:36:41,116 INFO [main] h.v.p.j.g.Glavna [Glavna.java:133] Uneseno ime vlasnika 2. raèuna: fdsf 
+2013-04-23 17:36:41,828 INFO [main] h.v.p.j.g.Glavna [Glavna.java:136] Uneseno prezime vlasnika 2. raèuna: sdfs 
+2013-04-23 17:36:42,668 INFO [main] h.v.p.j.g.Glavna [Glavna.java:139] Unesen oib vlasnika 2. raèuna: sdfsd 
+2013-04-23 17:36:43,580 INFO [main] h.v.p.j.g.Glavna [Glavna.java:142] Unesen broj racuna 2. raèuna: sdfds 
+2013-04-23 17:36:46,085 INFO [main] h.v.p.j.g.Glavna [Glavna.java:211] Uneseno stanje racuna prve osobe: 200 
+2013-04-23 17:37:59,085 INFO [main] h.v.p.j.g.Glavna [Glavna.java:32] Aplikacija pokrenuta! 
+2013-04-23 17:38:52,726 INFO [main] h.v.p.j.g.Glavna [Glavna.java:32] Aplikacija pokrenuta! 
+2013-04-23 17:39:09,261 INFO [main] h.v.p.j.g.Glavna [Glavna.java:134] Uneseno ime vlasnika 1. raèuna: fdsf 
+2013-04-23 17:39:09,589 INFO [main] h.v.p.j.g.Glavna [Glavna.java:137] Uneseno prezime vlasnika 1. raèuna: sdfds 
+2013-04-23 17:39:09,853 INFO [main] h.v.p.j.g.Glavna [Glavna.java:140] Unesen oib vlasnika 1. raèuna: fsdf 
+2013-04-23 17:39:10,093 INFO [main] h.v.p.j.g.Glavna [Glavna.java:143] Unesen broj racuna 1. raèuna: sdf 
+2013-04-23 17:39:10,348 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:216] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:211) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:147) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:39:14,591 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:216] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:211) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:147) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:39:16,160 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Uneseno stanje racuna prve osobe: 100 
+2013-04-23 17:39:18,591 INFO [main] h.v.p.j.g.Glavna [Glavna.java:134] Uneseno ime vlasnika 2. raèuna: fdsf 
+2013-04-23 17:39:18,903 INFO [main] h.v.p.j.g.Glavna [Glavna.java:137] Uneseno prezime vlasnika 2. raèuna: sdfsd 
+2013-04-23 17:39:19,174 INFO [main] h.v.p.j.g.Glavna [Glavna.java:140] Unesen oib vlasnika 2. raèuna: fdsf 
+2013-04-23 17:39:19,471 INFO [main] h.v.p.j.g.Glavna [Glavna.java:143] Unesen broj racuna 2. raèuna: sdfsd 
+2013-04-23 17:39:21,631 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:216] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:211) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:147) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:39:23,559 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Uneseno stanje racuna prve osobe: 200 
+2013-04-23 17:39:26,280 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Unesen iznos transakcije: 50 
+2013-04-23 17:39:26,281 INFO [main] h.v.p.j.g.Glavna [Glavna.java:95] Transakcija uspjesno provedena! 
+2013-04-23 17:39:33,969 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Unesen iznos transakcije: 10 
+2013-04-23 17:39:33,970 INFO [main] h.v.p.j.g.Glavna [Glavna.java:95] Transakcija uspjesno provedena! 
+2013-04-23 17:39:39,754 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Unesen iznos transakcije: 20 
+2013-04-23 17:39:39,755 INFO [main] h.v.p.j.g.Glavna [Glavna.java:95] Transakcija uspjesno provedena! 
+2013-04-23 17:40:07,772 INFO [main] h.v.p.j.g.Glavna [Glavna.java:32] Aplikacija pokrenuta! 
+2013-04-23 17:40:11,064 INFO [main] h.v.p.j.g.Glavna [Glavna.java:169] Uneseno ime vlasnika 1. raèuna: gsdfg 
+2013-04-23 17:40:11,312 INFO [main] h.v.p.j.g.Glavna [Glavna.java:172] Uneseno prezime vlasnika 1. raèuna: fgg 
+2013-04-23 17:40:11,480 INFO [main] h.v.p.j.g.Glavna [Glavna.java:175] Unesen oib vlasnika 1. raèuna: dfg 
+2013-04-23 17:40:11,648 INFO [main] h.v.p.j.g.Glavna [Glavna.java:178] Unesen IBAN 1. raèuna: fdg 
+2013-04-23 17:40:11,817 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:242] Valuta fdg nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta fdg nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:237) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:182) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.fdg
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:40:11,968 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:242] Valuta fdg nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta fdg nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:237) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:182) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.fdg
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:40:12,144 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:242] Valuta fdg nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta fdg nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:237) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:182) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.fdg
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:40:15,040 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:242] Valuta fdEUR nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta fdEUR nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:237) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:182) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.fdEUR
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:40:16,528 INFO [main] h.v.p.j.g.Glavna [Glavna.java:239] Unesena valuta racuna druge osobe: EUR 
+2013-04-23 17:40:18,698 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Uneseno stanje racuna druge osobe: 100 
+2013-04-23 17:40:21,272 INFO [main] h.v.p.j.g.Glavna [Glavna.java:134] Uneseno ime vlasnika 2. raèuna: fds 
+2013-04-23 17:40:21,521 INFO [main] h.v.p.j.g.Glavna [Glavna.java:137] Uneseno prezime vlasnika 2. raèuna: sdf 
+2013-04-23 17:40:21,721 INFO [main] h.v.p.j.g.Glavna [Glavna.java:140] Unesen oib vlasnika 2. raèuna: sdfds 
+2013-04-23 17:40:21,874 INFO [main] h.v.p.j.g.Glavna [Glavna.java:143] Unesen broj racuna 2. raèuna: fd 
+2013-04-23 17:40:22,026 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:216] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:211) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:147) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:40:22,194 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:216] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:211) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:147) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:40:23,274 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:216] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:211) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:147) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:40:24,114 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Uneseno stanje racuna prve osobe: 100 
+2013-04-23 17:40:27,906 INFO [main] h.v.p.j.g.Glavna [Glavna.java:134] Uneseno ime vlasnika 1. raèuna: fd 
+2013-04-23 17:40:28,106 INFO [main] h.v.p.j.g.Glavna [Glavna.java:137] Uneseno prezime vlasnika 1. raèuna: df 
+2013-04-23 17:40:28,274 INFO [main] h.v.p.j.g.Glavna [Glavna.java:140] Unesen oib vlasnika 1. raèuna: sdf 
+2013-04-23 17:40:28,450 INFO [main] h.v.p.j.g.Glavna [Glavna.java:143] Unesen broj racuna 1. raèuna: dsf 
+2013-04-23 17:40:28,627 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:216] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:211) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:147) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:40:29,203 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:216] Unesen neispravan iznos za stanje prvog raèuna! 
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.next(Unknown Source) ~[na:1.7.0_17]
+	at java.util.Scanner.nextBigDecimal(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjaniIznos(Glavna.java:211) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosTekucegRacuna(Glavna.java:147) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:45) [bin/:na]
+2013-04-23 17:40:30,515 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Uneseno stanje racuna prve osobe: 100 
+2013-04-23 17:40:36,651 INFO [main] h.v.p.j.g.Glavna [Glavna.java:169] Uneseno ime vlasnika 2. raèuna: fdsf 
+2013-04-23 17:40:36,907 INFO [main] h.v.p.j.g.Glavna [Glavna.java:172] Uneseno prezime vlasnika 2. raèuna: dsf 
+2013-04-23 17:40:37,123 INFO [main] h.v.p.j.g.Glavna [Glavna.java:175] Unesen oib vlasnika 2. raèuna: sdfds 
+2013-04-23 17:40:37,307 INFO [main] h.v.p.j.g.Glavna [Glavna.java:178] Unesen IBAN 2. raèuna: fds 
+2013-04-23 17:40:37,748 ERROR [main] h.v.p.j.g.Glavna [Glavna.java:242] Valuta fds nije podržana! 
+hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException: Valuta fds nije podržana!
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:72) ~[bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unesiValjanuValutu(Glavna.java:237) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.unosDeviznogRacuna(Glavna.java:182) [bin/:na]
+	at hr.vvg.programiranje.java.glavna.Glavna.main(Glavna.java:47) [bin/:na]
+Caused by: java.lang.IllegalArgumentException: No enum constant hr.vvg.programiranje.java.banka.Valuta.fds
+	at java.lang.Enum.valueOf(Unknown Source) ~[na:1.7.0_17]
+	at hr.vvg.programiranje.java.banka.Valuta.valueOf(Valuta.java:1) ~[bin/:na]
+	at hr.vvg.programiranje.java.banka.DeviznaTransakcija.provjeriValutu(DeviznaTransakcija.java:70) ~[bin/:na]
+	... 3 common frames omitted
+2013-04-23 17:40:39,317 INFO [main] h.v.p.j.g.Glavna [Glavna.java:239] Unesena valuta racuna druge osobe: EUR 
+2013-04-23 17:40:41,501 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Uneseno stanje racuna druge osobe: 20 
+2013-04-23 17:40:45,917 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Unesen iznos transakcije: 10 
+2013-04-23 17:40:45,919 INFO [main] h.v.p.j.g.Glavna [Glavna.java:95] Transakcija uspjesno provedena! 
+2013-04-23 17:40:50,734 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Unesen iznos transakcije: 5 
+2013-04-23 17:40:50,734 INFO [main] h.v.p.j.g.Glavna [Glavna.java:95] Transakcija uspjesno provedena! 
+2013-04-23 17:40:52,686 INFO [main] h.v.p.j.g.Glavna [Glavna.java:213] Unesen iznos transakcije: 2 
+2013-04-23 17:40:52,687 INFO [main] h.v.p.j.g.Glavna [Glavna.java:95] Transakcija uspjesno provedena! 

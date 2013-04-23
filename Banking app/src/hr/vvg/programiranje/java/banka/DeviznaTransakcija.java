@@ -9,12 +9,12 @@ import java.math.RoundingMode;
 /**
  * Predstavlja entitet devizne transakcije koja nasljeduje transakciju i implementira devizno sucelje.
  * 
- * @see Transakcija
- * 
  * @author Kulja
  *
+ * @param <T> podatak koji mora biti podklasa klase <code>TekuciRacun</code> i predstavlja polazni racun
+ * @param <S> podatak koji mora biti podklasa klase <code>DevizniRacun</code> i predstavlja odlazni racun
  */
-public class DeviznaTransakcija extends Transakcija implements Devizna {
+public class DeviznaTransakcija<T extends TekuciRacun, S extends DevizniRacun> extends Transakcija<T, S> implements Devizna {
 	
 	/**
 	 * Poziva konstruktor nadklase
@@ -23,7 +23,7 @@ public class DeviznaTransakcija extends Transakcija implements Devizna {
 	 * @param dolazniRacun podatak o odlaznom racunu
 	 * @param iznos podatak o iznosu transakcije
 	 */
-	public DeviznaTransakcija(TekuciRacun polazniRacun, DevizniRacun dolazniRacun, BigDecimal iznos) {
+	public DeviznaTransakcija(T polazniRacun, S dolazniRacun, BigDecimal iznos) {
 		super(polazniRacun, dolazniRacun, iznos);
 	}
 	
@@ -40,7 +40,7 @@ public class DeviznaTransakcija extends Transakcija implements Devizna {
 	
 	/** 
 	 * Izvrsava transakciju ukoliko na polaznom racunu ima dovoljno sredstava za isplatu. Ukoliko nema dovoljno 
-	 * sredstava za isplatu baca iznimku NedozvoljenoStanjeRacunaException. Ukoliko ima, uzima u obzir valutu 
+	 * sredstava za isplatu baca iznimku <code>NedozvoljenoStanjeRacunaException</code>. Ukoliko ima, uzima u obzir valutu 
 	 * drugog racuna i radi konverziju iz kune u valutu odlaznog racuna pozivanjem metode mjenjacnica. 
 	 * 
 	 * @see hr.vvg.programiranje.java.banka.Transakcija#provediTransakciju()
@@ -52,7 +52,7 @@ public class DeviznaTransakcija extends Transakcija implements Devizna {
 			throw new NedozvoljenoStanjeRacunaException("Na prvom raèunu nema dovoljno sredstava (" + polazni.getStanje() + ") za provoðenje transakcije! (" + iznos + ")");
 		} else {
 			polazni.isplatiSRacuna(super.iznos);
-			BigDecimal konvertiraniIznos = mjenjacnica(super.iznos, ((DevizniRacun)odlazni).getValuta()); 
+			BigDecimal konvertiraniIznos = mjenjacnica(super.iznos, odlazni.getValuta()); 
 			odlazni.uplatiNaRacun(konvertiraniIznos);
 		}
 	}

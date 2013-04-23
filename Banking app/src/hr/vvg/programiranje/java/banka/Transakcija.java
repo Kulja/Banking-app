@@ -7,11 +7,13 @@ import java.math.BigDecimal;
  * 
  * @author Kulja
  *
+ * @param <T> podatak koji mora biti podklasa klase <code>Racun</code> i predstavlja polazni racun
+ * @param <S> podatak koji mora biti podklasa klase <code>Racun</code> i predstavlja odlazni racun
  */
-public class Transakcija {
+public class Transakcija<T extends Racun, S extends Racun> {
 	
-	protected Racun polazni;
-	protected Racun odlazni;
+	protected T polazni;
+	protected S odlazni;
 	protected BigDecimal iznos;
 	
 	/**
@@ -21,7 +23,7 @@ public class Transakcija {
 	 * @param odlazni podatak o odlaznom racunu
 	 * @param iznos podatak o iznosu transakcije
 	 */
-	public Transakcija (Racun polazni, Racun odlazni, BigDecimal iznos) {
+	public Transakcija (T polazni, S odlazni, BigDecimal iznos) {
 		this.polazni = polazni;
 		this.odlazni = odlazni;
 		this.iznos = iznos;
