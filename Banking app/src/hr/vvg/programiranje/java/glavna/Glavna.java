@@ -11,6 +11,8 @@ import hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException;
 import hr.vvg.programiranje.java.osoba.Osoba;
 import hr.vvg.programiranje.java.sortiranje.SortiranjeTransakcija;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -26,10 +28,19 @@ public class Glavna {
 
 	private static final Logger logger = LoggerFactory.getLogger(Glavna.class);
 	private static final int BROJ_RACUNA = 2;
+	public static final String NAZIV_DATOTEKE = "uneseniPodaci.txt";
 	
 	public static void main(String[] args) {
 		
 		logger.info("Aplikacija pokrenuta!");
+		
+		FileWriter writer = null;
+		try {
+			writer = new FileWriter(NAZIV_DATOTEKE);
+		} catch (IOException e) {
+			logger.error("Doslo je do pogreske kod otvaranja datoteke", e.getMessage());
+			e.printStackTrace();
+		}
 		
 		Scanner unos = new Scanner(System.in);
 		boolean neispravanUnos = true;
@@ -41,15 +52,18 @@ public class Glavna {
 		do {
 			for(int i = 0; i < BROJ_RACUNA; i++) {
 				System.out.print("Unesite vrstu raèuna (T - tekuæi; ostalo - devizni): ");
+				
 				if("T".equals(unos.next())) {
-					listaRacuna.add(i, unosTekucegRacuna(unos, i));
+					listaRacuna.add(i, unosTekucegRacuna(unos, writer, i));
 				} else {
-					listaRacuna.add(i, unosDeviznogRacuna(unos, i));
+					listaRacuna.add(i, unosDeviznogRacuna(unos, writer, i));
 				}
 			}
 			
 			if (listaRacuna.get(0) instanceof DevizniRacun) {
-				System.out.println("Pogreška kod unosa. Prvi raèun mora biti tekuæi raèun!");
+				String tekstPogreske = "Pogreška kod unosa. Prvi raèun mora biti tekuæi raèun!";
+				System.out.println(tekstPogreske);
+				zapisiUDatoteku(writer, tekstPogreske);
 				neispravanUnos = true;
 			} else {
 				neispravanUnos = false;
@@ -62,6 +76,7 @@ public class Glavna {
 			// pozivanje metode unesiValjaniIznos koja od korisnika trazi da 
 			// unosi iznos transakcije dok ne unese valjani iznos
 			BigDecimal iznos = unesiValjaniIznos(unos, "Unesite iznos (KN) koji zelite prebaciti s prvog racuna na drugi: ", "Unesen neispravan iznos za transakciju!", "Unesen iznos transakcije: ");
+			zapisiUDatoteku(writer, "Iznos transakcije: " + iznos + "KN");
 			
 			Transakcija<TekuciRacun, TekuciRacun> transakcija = null;
 			DeviznaTransakcija<TekuciRacun, DevizniRacun> deviznaTransakcija = null;
@@ -108,44 +123,79 @@ public class Glavna {
 		} while(neispravanUnos);
 
 		System.out.println("Stanje prvog racuna: " + listaRacuna.get(0).getStanje() + "KN");
+		zapisiUDatoteku(writer, "Stanje na prvom raèunu: " + listaRacuna.get(0).getStanje() + "KN");
 		if(listaRacuna.get(1) instanceof DevizniRacun) { 
 			System.out.println("Stanje drugog racuna " + listaRacuna.get(1).getStanje() + ((DevizniRacun)listaRacuna.get(1)).getValuta());
+			zapisiUDatoteku(writer, "Stanje na drugom raèunu: " + listaRacuna.get(1).getStanje() + ((DevizniRacun)listaRacuna.get(1)).getValuta());
 		} else {
 			System.out.println("Stanje drugog racuna: " + listaRacuna.get(1).getStanje() + "KN");
+			zapisiUDatoteku(writer, "Stanje na drugom raèunu: " + listaRacuna.get(1).getStanje() + "KN");
 		}
 		System.out.println("Transakcija s najviše sredstava: " + ((Transakcija<?, ?>)setTransakcija.first()).getIznos() + "KN");
 		
 		unos.close();
+		
+		try {
+			writer.close();
+		} catch (IOException e) {
+			logger.error("Doslo je do pogreske kod zatvaranja datoteke", e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+	
+	/**
+	 * Zapisuje poruke u odabranu datoteku
+	 * 
+	 * @param writer predstavlja datoteku u koju se zapisuju poruke
+	 * @param poruka predstavlja poruku koja se zapisuje u datoteku
+	 */
+	public static void zapisiUDatoteku(FileWriter writer, String poruka) {
+		try {
+			writer.write(poruka + "\n");
+		} catch (IOException e) {
+			logger.error("Doslo je kod pogreske u zapisivanju poruke u datoteku", e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * Prikuplja podatke o osobi i stanju na racunu te kreira objekt <TekuciRacun> kojeg vraca. 
 	 * 
 	 * @param unos predstavlja parser za unos podataka preko tipkovnice
+	 * @param writer predstavlja datoteku u koju se zapisuju svi podaci
 	 * @param redniBrojRacuna podatak koji se koristi za ispis rednoj broja racuna koji se kreira
 	 * @return kreirani <TekuciRacun>
 	 */
-	public static TekuciRacun unosTekucegRacuna(Scanner unos, int redniBrojRacuna) {
+	public static TekuciRacun unosTekucegRacuna(Scanner unos, FileWriter writer, int redniBrojRacuna) {
 		redniBrojRacuna++;
-		// prikupljanje podataka o osobi i stanju njezinog racuna
-		// i logiranje unesenih podataka
+		// prikupljanje podataka o osobi i stanju njezinog racuna, 
+		// logiranje unesenih podataka i njihovo spremanje u datoteku
+		
+		zapisiUDatoteku(writer, "Vrsta " + redniBrojRacuna + " racuna: T");
+		
 		System.out.print("Unesite ime " + redniBrojRacuna + ". osobe: ");
 		String ime = unos.next();
 		logger.info("Uneseno ime vlasnika " + redniBrojRacuna + ". raèuna: " + ime);
+		zapisiUDatoteku(writer, "Ime vlasnika " + redniBrojRacuna + ". raèuna: " + ime);
 		System.out.print("Unesite prezime " + redniBrojRacuna + ". osobe: ");
 		String prezime = unos.next();
 		logger.info("Uneseno prezime vlasnika " + redniBrojRacuna + ". raèuna: " + prezime);
+		zapisiUDatoteku(writer, "Prezime vlasnika " + redniBrojRacuna + ". raèuna: " + prezime);
 		System.out.print("Unesite oib " + redniBrojRacuna + ". osobe: ");
 		String oib = unos.next();
 		logger.info("Unesen oib vlasnika " + redniBrojRacuna + ". raèuna: " + oib);
+		zapisiUDatoteku(writer, "OIB vlasnika " + redniBrojRacuna + ". raèuna: " + oib);
 		System.out.print("Unesite broj racuna " + redniBrojRacuna + ". osobe: ");
 		String brojRacuna = unos.next();
-		logger.info("Unesen broj racuna " + redniBrojRacuna + ". raèuna: " + brojRacuna);
+		logger.info("Unesen broj " + redniBrojRacuna + ". raèuna: " + brojRacuna);
+		zapisiUDatoteku(writer, "Broj " + redniBrojRacuna + ". raèuna: " + brojRacuna);
 
 		// pozivanje metode unesiValjaniIznos koja od korisnika trazi da
 		// unosi stanja racuna dok ne unese valjani iznos
 		BigDecimal stanje = unesiValjaniIznos(unos, "Unesite stanje racuna prve osobe: ", "Unesen neispravan iznos za stanje prvog raèuna!", "Uneseno stanje racuna prve osobe: ");
-
+		zapisiUDatoteku(writer, "Stanje " + redniBrojRacuna + ". raèuna: " + stanje + "KN");
+		
 		// kreiranje osobe
 		Osoba prvaOsoba = new Osoba(ime, prezime, oib);
 		
@@ -157,33 +207,43 @@ public class Glavna {
 	 * Prikuplja podatke o osobi i stanju na racunu te kreira objekt <DevizniRacun> kojeg vraca.
 	 * 
 	 * @param unos predstavlja parser za unos podataka preko tipkovnice
+	 * @param writer predstavlja datoteku u koju se zapisuju svi podaci
 	 * @param redniBrojRacuna podatak koji se koristi za ispis rednoj broja racuna koji se kreira
 	 * @return kreirani <DevizniRacun>
 	 */
-	public static DevizniRacun unosDeviznogRacuna(Scanner unos, int redniBrojRacuna) {
+	public static DevizniRacun unosDeviznogRacuna(Scanner unos, FileWriter writer, int redniBrojRacuna) {
 		redniBrojRacuna++;
-		// prikupljanje podataka o osobi i stanju njezinog racuna
-		// i logiranje unesenih podataka
+		// prikupljanje podataka o osobi i stanju njezinog racuna, 
+		// logiranje unesenih podataka i njihovo spremanje u datoteku
+		
+		zapisiUDatoteku(writer, "Vrsta " + redniBrojRacuna + " racuna: D");
+		
 		System.out.print("Unesite ime " + redniBrojRacuna + ". osobe: ");
 		String ime = unos.next();
 		logger.info("Uneseno ime vlasnika " + redniBrojRacuna + ". raèuna: " + ime);
+		zapisiUDatoteku(writer, "Ime vlasnika " + redniBrojRacuna + ". raèuna: " + ime);
 		System.out.print("Unesite prezime " + redniBrojRacuna + ". osobe: ");
 		String prezime = unos.next();
 		logger.info("Uneseno prezime vlasnika " + redniBrojRacuna + ". raèuna: " + prezime);
+		zapisiUDatoteku(writer, "Prezime vlasnika " + redniBrojRacuna + ". raèuna: " + prezime);
 		System.out.print("Unesite oib " + redniBrojRacuna + ". osobe: ");
 		String oib = unos.next();
 		logger.info("Unesen oib vlasnika " + redniBrojRacuna + ". raèuna: " + oib);
+		zapisiUDatoteku(writer, "OIB vlasnika " + redniBrojRacuna + ". raèuna: " + oib);
 		System.out.print("Unesite IBAN racuna " + redniBrojRacuna + ". osobe: ");
 		String iban = unos.next();
 		logger.info("Unesen IBAN " + redniBrojRacuna + ". raèuna: " + iban);
+		zapisiUDatoteku(writer, "IBAN " + redniBrojRacuna + ". raèuna: " + oib);
 
 		// pozivanje metode unesiValjanuValutu koja od korisnika trazi da
 		// unosi valute dok ne unese podrzanu valutu
 		Valuta valuta = unesiValjanuValutu(unos);
+		zapisiUDatoteku(writer, "Valuta " + redniBrojRacuna + ". raèuna: " + valuta);
 
 		// pozivanje metode unesiValjaniIznos koja od korisnika trazi da
 		// unosi stanja racuna dok ne unese valjani iznos
 		BigDecimal stanje = unesiValjaniIznos(unos, "Unesite stanje racuna druge osobe: ", "Unesen neispravan iznos za stanje drugog raèuna!", "Uneseno stanje racuna druge osobe: ");
+		zapisiUDatoteku(writer, "Stanje " + redniBrojRacuna + ". raèuna: " + stanje + valuta);
 
 		// kreiranje osobe
 		Osoba drugaOsoba = new Osoba(ime, prezime, oib);
@@ -246,4 +306,5 @@ public class Glavna {
 		
 		return valuta;
 	}
+	
 }
