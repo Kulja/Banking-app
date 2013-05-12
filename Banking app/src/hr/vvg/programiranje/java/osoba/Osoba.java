@@ -36,5 +36,9 @@ public class Osoba {
 	public String getOib() {
 		return oib;
 	}
+	
+	public String toString() {
+		return ime + " " + prezime + " (" + oib + ")";
+	}
 
 }
