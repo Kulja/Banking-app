@@ -25,6 +25,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Predstavlja ekran za unosenje racuna.
+ * 
+ * @author Kulja
+ *
+ */
 public class UnosenjeNovogRacunaFrame extends JFrame {
 
 	private static final long serialVersionUID = 1839582901166867577L;
@@ -33,7 +39,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 	private JTextField textFieldBrojRacunaIban;
 
 	/**
-	 * Launch the application.
+	 * Prikaz ekrana.
 	 */
 	public void prikaziEkran() {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,7 +54,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Kreiranje sadrzaja ekrana.
 	 */
 	public UnosenjeNovogRacunaFrame(final List<Osoba> listaOsoba, final List<Racun> listaRacuna) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -124,7 +130,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 				if (odabranaVrstaRacuna.equals(VrstaRacuna.DEVIZNI)) {
 					comboBoxValuta.setEnabled(true);
 					comboBoxValuta.removeItemAt(0);
-					labelBrojRacunaIban.setText("IBAN");
+					labelBrojRacunaIban.setText("IBAN: ");
 					labelStanjeRacuna.setText("Stanje ra\u010Duna: ");
 				} else {
 					comboBoxValuta.setEnabled(false);

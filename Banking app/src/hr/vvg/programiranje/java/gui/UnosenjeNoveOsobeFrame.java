@@ -18,6 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Predstavlja ekran za unosenje osoba.
+ * 
+ * @author Kulja
+ *
+ */
 public class UnosenjeNoveOsobeFrame extends JFrame {
 
 	private static final long serialVersionUID = -1077892338765222221L;
@@ -27,7 +33,7 @@ public class UnosenjeNoveOsobeFrame extends JFrame {
 	private JTextField textFieldOib;
 
 	/**
-	 * Launch the application.
+	 * Prikaz ekrana.
 	 */
 	public void prikaziEkran() {
 		EventQueue.invokeLater(new Runnable() {
@@ -42,7 +48,7 @@ public class UnosenjeNoveOsobeFrame extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Kreiranje sadrzaja ekrana.
 	 */
 	public UnosenjeNoveOsobeFrame(final List<Osoba> listaOsoba) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

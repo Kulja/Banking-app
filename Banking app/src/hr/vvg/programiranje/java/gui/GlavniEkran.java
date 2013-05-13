@@ -14,6 +14,12 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Predstavlja pocetni ekran aplikacije.
+ * 
+ * @author Kulja
+ *
+ */
 public class GlavniEkran {
 
 	private JFrame frame;
@@ -21,7 +27,7 @@ public class GlavniEkran {
 	private List<Racun> listaRacuna;
 
 	/**
-	 * Launch the application.
+	 * Pokretanje aplikacije.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -37,14 +43,14 @@ public class GlavniEkran {
 	}
 
 	/**
-	 * Create the application.
+	 * Kreiranje ekrana.
 	 */
 	public GlavniEkran() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicijalizacija sadrzaja pocetnog okvira.
 	 */
 	private void initialize() {
 		
