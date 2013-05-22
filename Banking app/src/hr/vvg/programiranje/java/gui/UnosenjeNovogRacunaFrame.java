@@ -57,6 +57,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 	 * Kreiranje sadrzaja ekrana.
 	 */
 	public UnosenjeNovogRacunaFrame(final List<Osoba> listaOsoba, final List<Racun> listaRacuna) {
+		setTitle("Dodaj novi ra\u010Dun");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 452, 188);
 		contentPane = new JPanel();
@@ -184,6 +185,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 					DevizniRacun devizni = new DevizniRacun(vlasnikRacuna, stanjeRacuna, iban, valuta);
 					listaRacuna.add(devizni);
 					JOptionPane.showMessageDialog(null, "Uspješno ste dodali novi devizni raèun: " + iban);
+					GlavniEkran.osvjeziPopisRacuna();
 				} else {
 					String brojRacuna = textFieldBrojRacunaIban.getText();
 					BigDecimal stanjeRacuna = new BigDecimal(textFieldStanjeRacuna.getText());
@@ -191,6 +193,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 					TekuciRacun tekuci = new TekuciRacun(vlasnikRacuna, stanjeRacuna, brojRacuna);
 					listaRacuna.add(tekuci);
 					JOptionPane.showMessageDialog(null, "Uspješno ste dodali novi tekuæi raèun: " + brojRacuna);
+					GlavniEkran.osvjeziPopisRacuna();
 				}
 				dispose();
 			}

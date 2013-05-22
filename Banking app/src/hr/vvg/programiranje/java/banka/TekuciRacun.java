@@ -32,4 +32,8 @@ public class TekuciRacun extends Racun {
 		return brojRacuna;
 	}
 	
+	public String toString() {
+		return brojRacuna;
+	}
+	
 }

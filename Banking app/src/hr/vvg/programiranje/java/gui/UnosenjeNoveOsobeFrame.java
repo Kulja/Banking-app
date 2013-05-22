@@ -51,6 +51,7 @@ public class UnosenjeNoveOsobeFrame extends JFrame {
 	 * Kreiranje sadrzaja ekrana.
 	 */
 	public UnosenjeNoveOsobeFrame(final List<Osoba> listaOsoba) {
+		setTitle("Dodaj novu osobu");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 451, 146);
 		contentPane = new JPanel();

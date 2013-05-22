@@ -39,4 +39,8 @@ public class DevizniRacun extends Racun {
 		return valuta;
 	}
 	
+	public String toString() {
+		return iban;
+	}
+	
 }
