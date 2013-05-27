@@ -30,7 +30,22 @@ public class DevizniRacun extends Racun {
 		this.iban = iban;
 		this.valuta = valuta;
 	}
-
+	
+	/**
+	 * Poziva konstruktor nadklase i inicijalizira podatak o ibanu, valuti.
+	 * 
+	 * @param id podatak o id-u racuna
+	 * @param vlasnikRacuna podatak o vlasniku racuna
+	 * @param stanje podatak o stanju sredstava na racunu
+	 * @param iban podatak o internacionalnom broju racuna
+	 * @param valuta podatak o valuti racuna
+	 */
+	public DevizniRacun(Integer id, Osoba vlasnikRacuna, BigDecimal stanje, String iban, Valuta valuta) {
+		super(id, vlasnikRacuna, stanje);
+		this.iban = iban;
+		this.valuta = valuta;
+	}
+	
 	public String getIban() {
 		return iban;
 	}

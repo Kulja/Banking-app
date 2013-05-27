@@ -5,6 +5,7 @@ import hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Date;
 
 /**
  * Predstavlja entitet devizne transakcije koja nasljeduje transakciju i implementira devizno sucelje.
@@ -17,7 +18,7 @@ import java.math.RoundingMode;
 public class DeviznaTransakcija<T extends TekuciRacun, S extends DevizniRacun> extends Transakcija<T, S> implements Devizna {
 	
 	/**
-	 * Poziva konstruktor nadklase
+	 * Poziva konstruktor nadklase.
 	 * 
 	 * @param polazniRacun podatak o polaznom racunu
 	 * @param dolazniRacun podatak o odlaznom racunu
@@ -25,6 +26,20 @@ public class DeviznaTransakcija<T extends TekuciRacun, S extends DevizniRacun> e
 	 */
 	public DeviznaTransakcija(T polazniRacun, S dolazniRacun, BigDecimal iznos) {
 		super(polazniRacun, dolazniRacun, iznos);
+	}
+	
+	
+	/**
+	 * Poziva konstruktor nadklase.
+	 * 
+	 * @param id podatak o id-u transakcije
+	 * @param polazniRacun podatak o polaznom racunu
+	 * @param dolazniRacun podatak o odlaznom racunu
+	 * @param iznos podatak o iznos
+	 * @param datumTransakcije podatak o datumu transakcije
+	 */
+	public DeviznaTransakcija(Integer id, T polazniRacun, S dolazniRacun, BigDecimal iznos, Date datumTransakcije) {
+		super(id, polazniRacun, dolazniRacun, iznos, datumTransakcije);
 	}
 	
 	@Override

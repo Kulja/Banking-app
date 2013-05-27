@@ -5,8 +5,8 @@ import hr.vvg.programiranje.java.banka.DevizniRacun;
 import hr.vvg.programiranje.java.banka.Racun;
 import hr.vvg.programiranje.java.banka.TekuciRacun;
 import hr.vvg.programiranje.java.banka.Transakcija;
+import hr.vvg.programiranje.java.baza.BazaPodataka;
 import hr.vvg.programiranje.java.iznimke.NedozvoljenoStanjeRacunaException;
-import hr.vvg.programiranje.java.osoba.Osoba;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -14,7 +14,6 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -46,8 +45,6 @@ import org.slf4j.LoggerFactory;
 public class GlavniEkran {
 
 	private JFrame frmBankingApp;
-	private static List<Osoba> listaOsoba;
-	private static List<Racun> listaRacuna;
 	
 	private static JComboBox<Racun> prviRacunComboBox;
 	private static JComboBox<Racun> drugiRacunComboBox;
@@ -66,6 +63,15 @@ public class GlavniEkran {
 				try {
 					GlavniEkran window = new GlavniEkran();
 					window.frmBankingApp.setVisible(true);
+
+					List<Racun> listaRacuna = BazaPodataka.dohvatiSveRacune();
+					if(listaRacuna.isEmpty() == false) {
+						osvjeziPopisRacuna();
+					}
+					List<Transakcija<?,?>> listaTransakcija = BazaPodataka.dohvatiSveTransakcije();
+					for(Transakcija<?,?> transakcija : listaTransakcija) {
+						dodajTransakcijuUTablicu(transakcija.getPolazni(), transakcija.getOdlazni(), transakcija.getIznos());
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -83,10 +89,7 @@ public class GlavniEkran {
 	/**
 	 * Inicijalizacija sadrzaja pocetnog okvira.
 	 */
-	private void initialize() {
-		
-		listaOsoba = new ArrayList<Osoba>();
-		listaRacuna = new ArrayList<Racun>();
+	private void initialize() {;
 		
 		frmBankingApp = new JFrame();
 		frmBankingApp.setTitle("Banking");
@@ -102,7 +105,7 @@ public class GlavniEkran {
 		JMenuItem menuItemDodajNovuOsobu = new JMenuItem("Dodaj novu osobu");
 		menuItemDodajNovuOsobu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UnosenjeNoveOsobeFrame frame = new UnosenjeNoveOsobeFrame(listaOsoba);
+				UnosenjeNoveOsobeFrame frame = new UnosenjeNoveOsobeFrame();
 				frame.prikaziEkran();
 			}
 		});
@@ -114,7 +117,7 @@ public class GlavniEkran {
 		JMenuItem menuItemDodajNoviRaun = new JMenuItem("Dodaj novi ra\u010Dun");
 		menuItemDodajNoviRaun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UnosenjeNovogRacunaFrame frame = new UnosenjeNovogRacunaFrame(listaOsoba, listaRacuna);
+				UnosenjeNovogRacunaFrame frame = new UnosenjeNovogRacunaFrame();
 				frame.prikaziEkran();
 			}
 		});
@@ -149,12 +152,12 @@ public class GlavniEkran {
 
 				Racun prviRacun = prviRacunComboBox.getItemAt(prviRacunComboBox.getSelectedIndex());
 				if (prviRacun == null) {
-					prviRacun = listaRacuna.get(0);
+					prviRacun = BazaPodataka.dohvatiRacun(0);
 				}
 				if (prviRacun instanceof TekuciRacun) {
 					stanjePrvogRacunaLabel.setText(prviRacun.getStanje().toString());
 					valutaPrvogRacunaLabel.setText("KN");
-				} else {
+				} else if (prviRacun instanceof DevizniRacun) {
 					stanjePrvogRacunaLabel.setText(prviRacun.getStanje().toString());
 					valutaPrvogRacunaLabel.setText(((DevizniRacun) prviRacun).getValuta().toString());
 				}
@@ -188,12 +191,12 @@ public class GlavniEkran {
 				
 				Racun drugiRacun = drugiRacunComboBox.getItemAt(drugiRacunComboBox.getSelectedIndex());
 				if (drugiRacun == null) {
-					drugiRacun = listaRacuna.get(0);
+					drugiRacun = BazaPodataka.dohvatiRacun(0);
 				}
 				if (drugiRacun instanceof TekuciRacun) {
 					stanjeDrugogRacunaLabel.setText(drugiRacun.getStanje().toString());
 					valutaDrugogRacunaLabel.setText("KN");
-				} else {
+				} else if (drugiRacun instanceof DevizniRacun){
 					stanjeDrugogRacunaLabel.setText(drugiRacun.getStanje().toString());
 					valutaDrugogRacunaLabel.setText(((DevizniRacun) drugiRacun).getValuta().toString());
 				}
@@ -227,6 +230,7 @@ public class GlavniEkran {
 					try {
 						transakcija.provediTransakciju();
 						dodajTransakcijuUTablicu(prviRacun, drugiRacun, transakcija.getIznos());
+						BazaPodataka.spremiTransakciju(transakcija);
 						stanjePrvogRacunaLabel.setText(prviRacun.getStanje().toString());
 						stanjeDrugogRacunaLabel.setText(drugiRacun.getStanje().toString());
 					} catch (NedozvoljenoStanjeRacunaException ex) {
@@ -240,6 +244,7 @@ public class GlavniEkran {
 					try {
 						transakcija.provediTransakciju();
 						dodajTransakcijuUTablicu(prviRacun, drugiRacun, transakcija.getIznos());
+						BazaPodataka.spremiTransakciju(transakcija);
 						stanjePrvogRacunaLabel.setText(prviRacun.getStanje().toString());
 						stanjeDrugogRacunaLabel.setText(drugiRacun.getStanje().toString());
 					} catch (NedozvoljenoStanjeRacunaException ex) {
@@ -276,7 +281,7 @@ public class GlavniEkran {
 	public static void osvjeziPopisRacuna() {
 		prviRacunComboBox.removeAllItems();
 		drugiRacunComboBox.removeAllItems();
-		for (Racun racun : listaRacuna) {
+		for (Racun racun : BazaPodataka.dohvatiSveRacune()) {
 			prviRacunComboBox.addItem(racun);
 			drugiRacunComboBox.addItem(racun);
 		}

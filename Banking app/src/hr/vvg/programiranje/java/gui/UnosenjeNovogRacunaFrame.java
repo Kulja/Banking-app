@@ -1,10 +1,10 @@
 package hr.vvg.programiranje.java.gui;
 
 import hr.vvg.programiranje.java.banka.DevizniRacun;
-import hr.vvg.programiranje.java.banka.Racun;
 import hr.vvg.programiranje.java.banka.TekuciRacun;
 import hr.vvg.programiranje.java.banka.Valuta;
 import hr.vvg.programiranje.java.banka.VrstaRacuna;
+import hr.vvg.programiranje.java.baza.BazaPodataka;
 import hr.vvg.programiranje.java.osoba.Osoba;
 
 import java.awt.EventQueue;
@@ -14,7 +14,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -56,7 +55,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 	/**
 	 * Kreiranje sadrzaja ekrana.
 	 */
-	public UnosenjeNovogRacunaFrame(final List<Osoba> listaOsoba, final List<Racun> listaRacuna) {
+	public UnosenjeNovogRacunaFrame() {
 		setTitle("Dodaj novi ra\u010Dun");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 452, 188);
@@ -163,7 +162,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 		contentPane.add(labelVlasnikRacuna, gbc_labelVlasnikRacuna);
 		
 		final JComboBox<Osoba> comboBoxVlasnikRacuna = new JComboBox<Osoba>();
-		for (Osoba osoba : listaOsoba) {
+		for (Osoba osoba : BazaPodataka.dohvatiSveOsobe()) {
 			comboBoxVlasnikRacuna.addItem(osoba);
 		}
 		GridBagConstraints gbc_comboBoxVlasnikRacuna = new GridBagConstraints();
@@ -183,7 +182,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 					BigDecimal stanjeRacuna = new BigDecimal(textFieldStanjeRacuna.getText());
 					Osoba vlasnikRacuna = (Osoba) comboBoxVlasnikRacuna.getSelectedItem();
 					DevizniRacun devizni = new DevizniRacun(vlasnikRacuna, stanjeRacuna, iban, valuta);
-					listaRacuna.add(devizni);
+					BazaPodataka.spremiRacun(devizni);
 					JOptionPane.showMessageDialog(null, "Uspješno ste dodali novi devizni raèun: " + iban);
 					GlavniEkran.osvjeziPopisRacuna();
 				} else {
@@ -191,7 +190,7 @@ public class UnosenjeNovogRacunaFrame extends JFrame {
 					BigDecimal stanjeRacuna = new BigDecimal(textFieldStanjeRacuna.getText());
 					Osoba vlasnikRacuna = (Osoba) comboBoxVlasnikRacuna.getSelectedItem();
 					TekuciRacun tekuci = new TekuciRacun(vlasnikRacuna, stanjeRacuna, brojRacuna);
-					listaRacuna.add(tekuci);
+					BazaPodataka.spremiRacun(tekuci);
 					JOptionPane.showMessageDialog(null, "Uspješno ste dodali novi tekuæi raèun: " + brojRacuna);
 					GlavniEkran.osvjeziPopisRacuna();
 				}

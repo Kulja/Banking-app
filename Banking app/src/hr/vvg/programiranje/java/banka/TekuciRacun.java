@@ -27,6 +27,19 @@ public class TekuciRacun extends Racun {
 		super(vlasnikRacuna, stanje);
 		this.brojRacuna = brojRacuna;
 	}
+	
+	/**
+	 * Poziva konstruktor nadklase i inicijalizira podatak o broju racuna.
+	 * 
+	 * @param id podatak o id-u racuna
+	 * @param vlasnikRacuna podatak o vlasniku racuna
+	 * @param stanje podatak o stanju sredstava na racunu
+	 * @param brojRacuna podatak o broju racuna
+	 */
+	public TekuciRacun(Integer id, Osoba vlasnikRacuna, BigDecimal stanje, String brojRacuna) {
+		super(id, vlasnikRacuna, stanje);
+		this.brojRacuna = brojRacuna;
+	}
 
 	public String getBrojRacuna() {
 		return brojRacuna;

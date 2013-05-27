@@ -1,5 +1,6 @@
 package hr.vvg.programiranje.java.gui;
 
+import hr.vvg.programiranje.java.baza.BazaPodataka;
 import hr.vvg.programiranje.java.osoba.Osoba;
 
 import java.awt.EventQueue;
@@ -8,7 +9,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -50,7 +50,7 @@ public class UnosenjeNoveOsobeFrame extends JFrame {
 	/**
 	 * Kreiranje sadrzaja ekrana.
 	 */
-	public UnosenjeNoveOsobeFrame(final List<Osoba> listaOsoba) {
+	public UnosenjeNoveOsobeFrame() {
 		setTitle("Dodaj novu osobu");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 451, 146);
@@ -122,7 +122,7 @@ public class UnosenjeNoveOsobeFrame extends JFrame {
 				String prezime = textFieldPrezime.getText();
 				String oib = textFieldOib.getText();
 				Osoba novaOsoba = new Osoba(ime, prezime, oib);
-				listaOsoba.add(novaOsoba);
+				BazaPodataka.spremiOsobu(novaOsoba);
 				dispose();
 				JOptionPane.showMessageDialog(null, "Uspješno ste unijeli osobu: " + ime + " " + prezime);
 			}

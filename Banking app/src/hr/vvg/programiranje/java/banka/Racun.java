@@ -12,6 +12,7 @@ import java.math.BigDecimal;
  */
 public abstract class Racun {
 	
+	private Integer id;
 	private Osoba vlasnikRacuna;
 	private BigDecimal stanje;
 	
@@ -26,12 +27,29 @@ public abstract class Racun {
 		this.stanje = stanje;
 	}
 	
+	/**
+	 * Inicijalizira podatak o vlasniku racuna, stanju sredstava na racunu i id-u racuna.
+	 * 
+	 * @param id podatak o id-u racuna
+	 * @param vlasnikRacuna podatak o vlasniku racuna
+	 * @param stanje podatak o stanju sredstava na racunu
+	 */
+	public Racun (Integer id, Osoba vlasnikRacuna, BigDecimal stanje) {
+		this.id = id;
+		this.vlasnikRacuna = vlasnikRacuna;
+		this.stanje = stanje;
+	}
+	
 	public Osoba getVlasnikRacuna() {
 		return vlasnikRacuna;
 	}
 
 	public BigDecimal getStanje() {
 		return stanje;
+	}
+	
+	public Integer getId() {
+		return id;
 	}
 	
 	/**
