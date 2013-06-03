@@ -7,6 +7,7 @@ import hr.vvg.programiranje.java.banka.TekuciRacun;
 import hr.vvg.programiranje.java.banka.Transakcija;
 import hr.vvg.programiranje.java.baza.BazaPodataka;
 import hr.vvg.programiranje.java.iznimke.NedozvoljenoStanjeRacunaException;
+import hr.vvg.programiranje.java.nit.DohvatTecajevaNit;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -15,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -93,7 +96,7 @@ public class GlavniEkran {
 		
 		frmBankingApp = new JFrame();
 		frmBankingApp.setTitle("Banking");
-		frmBankingApp.setBounds(100, 100, 478, 278);
+		frmBankingApp.setBounds(100, 100, 478, 290);
 		frmBankingApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -219,6 +222,14 @@ public class GlavniEkran {
 		JLabel iznosTransakcijeValutaLabel = new JLabel("KN");
 		iznosTransakcijePanel.add(iznosTransakcijeValutaLabel);
 		
+		JLabel vrijemeDohvacenogTecajaLabel = new JLabel("Posljednji dohva\u0107eni te\u010Daj u vrijeme: ");
+		
+		// thread
+		final DohvatTecajevaNit nit = new DohvatTecajevaNit(vrijemeDohvacenogTecajaLabel);
+		ExecutorService executorService = Executors.newFixedThreadPool(1);
+		executorService.execute(nit);
+		executorService.shutdown();
+		
 		JButton izvrsavanjeTransakcijeButton = new JButton("Izvr\u0161i transakciju");
 		izvrsavanjeTransakcijeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -242,6 +253,7 @@ public class GlavniEkran {
 				} else if (prviRacun instanceof TekuciRacun && drugiRacun instanceof DevizniRacun) {
 					DeviznaTransakcija<TekuciRacun, DevizniRacun> transakcija = new DeviznaTransakcija<>((TekuciRacun) prviRacun, (DevizniRacun) drugiRacun, new BigDecimal(iznosTransakcijeTextField.getText()));
 					try {
+						transakcija.postaviListuTecajeva(nit.dohvatiPosljednjuListuTecajeva());
 						transakcija.provediTransakciju();
 						dodajTransakcijuUTablicu(prviRacun, drugiRacun, transakcija.getIznos());
 						BazaPodataka.spremiTransakciju(transakcija);
@@ -260,6 +272,7 @@ public class GlavniEkran {
 			}
 		});
 		iznosTransakcijePanel.add(izvrsavanjeTransakcijeButton);
+		iznosTransakcijePanel.add(vrijemeDohvacenogTecajaLabel);
 		
 		JPanel popisTransakcijaPanel = new JPanel();
 		frmBankingApp.getContentPane().add(popisTransakcijaPanel, BorderLayout.SOUTH);

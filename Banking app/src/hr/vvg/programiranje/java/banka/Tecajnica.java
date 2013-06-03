@@ -1,13 +1,17 @@
 package hr.vvg.programiranje.java.banka;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import org.joda.time.DateTime;
 
 /**
  * Predstavlja entitet tecajnice
@@ -22,13 +26,24 @@ public class Tecajnica {
 	 * 
 	 * @return listu podrzanih tecajeva.
 	 */
-	public static List<Tecaj> dohvatiTecajeve() {
+	public static List<Tecaj> dohvatiTecajeve(DateTime date) {
 		
 		List<Tecaj> listaTecajeva = new ArrayList<>();
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy");
+		InputStream in = null;
 		try {
-			URL u = new URL("http://www.hnb.hr/tecajn/f270413.dat");
-			InputStream in = u.openStream();
+			while(true) {
+				String trenutniDatumString = sdf.format(date.toDate());
+				URL u = new URL("http://www.hnb.hr/tecajn/f" + trenutniDatumString + ".dat");
+				try {
+					in = u.openStream();
+					break;
+				} catch (FileNotFoundException ex) {
+					date = date.minusDays(1);
+				}
+			}
+
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			
 			String line = "";

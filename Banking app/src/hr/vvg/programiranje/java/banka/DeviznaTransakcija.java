@@ -6,6 +6,7 @@ import hr.vvg.programiranje.java.iznimke.NepodrzanaValutaException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Predstavlja entitet devizne transakcije koja nasljeduje transakciju i implementira devizno sucelje.
@@ -16,6 +17,8 @@ import java.util.Date;
  * @param <S> podatak koji mora biti podklasa klase <code>DevizniRacun</code> i predstavlja odlazni racun
  */
 public class DeviznaTransakcija<T extends TekuciRacun, S extends DevizniRacun> extends Transakcija<T, S> implements Devizna {
+	
+	private List<Tecaj> listaTecajeva;
 	
 	/**
 	 * Poziva konstruktor nadklase.
@@ -43,7 +46,7 @@ public class DeviznaTransakcija<T extends TekuciRacun, S extends DevizniRacun> e
 	
 	@Override
 	public BigDecimal mjenjacnica(BigDecimal polazniIznosKN, Valuta valuta) {
-		for (Tecaj tecaj : Tecajnica.dohvatiTecajeve()) {
+		for (Tecaj tecaj : this.listaTecajeva) {
 			if (tecaj.getValuta().compareTo(valuta) == 0) {
 				BigDecimal iznos = polazniIznosKN.divide(tecaj.getTecajPremaKuni(), 2, RoundingMode.HALF_UP);
 				return iznos;
@@ -85,6 +88,15 @@ public class DeviznaTransakcija<T extends TekuciRacun, S extends DevizniRacun> e
 		} catch (IllegalArgumentException ex) {
 			throw new NepodrzanaValutaException("Valuta " + valuta + " nije podržana!", ex);
 		}
+	}
+	
+	/**
+	 * Postavlja listu tecajeva.
+	 * 
+	 * @param listaTecajeva podatak o listi tecajeva koji se spremaju u privatnu varijabli listaTecajeva
+	 */
+	public void postaviListuTecajeva(List<Tecaj> listaTecajeva) {
+		this.listaTecajeva = listaTecajeva;
 	}
 
 }
