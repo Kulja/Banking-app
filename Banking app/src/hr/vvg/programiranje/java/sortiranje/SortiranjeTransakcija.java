@@ -10,7 +10,7 @@ import java.util.Comparator;
  * @author Kulja
  *
  */
-public class SortiranjeTransakcija implements Comparator<Transakcija> {
+public class SortiranjeTransakcija implements Comparator<Transakcija<?, ?>> {
 
 	/** 
 	 * Usporeduje iznose transakcija i sortira ih od najvise prema najmanjoj.
@@ -21,7 +21,7 @@ public class SortiranjeTransakcija implements Comparator<Transakcija> {
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public int compare(Transakcija transakcija1, Transakcija transakcija2) {
+	public int compare(Transakcija<?, ?> transakcija1, Transakcija<?, ?> transakcija2) {
 		return transakcija1.getIznos().compareTo(transakcija2.getIznos()) * (-1);
 	}
 

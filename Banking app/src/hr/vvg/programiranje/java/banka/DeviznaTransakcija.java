@@ -28,7 +28,6 @@ public class DeviznaTransakcija<T extends TekuciRacun, S extends DevizniRacun> e
 		super(polazniRacun, dolazniRacun, iznos);
 	}
 	
-	
 	/**
 	 * Poziva konstruktor nadklase.
 	 * 
